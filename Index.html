@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIAO CAO | Architecture & Photography</title>
+    <style>
+        /* --- 1. 极简主义设计系统 --- */
+        :root {
+            --bg-color: #f6f6f6; /* 类似素混凝土的灰白 */
+            --text-color: #222;
+            --accent-color: #999;
+            --spacing: 2rem;
+            --font-main: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 40px;
+            line-height: 1.6;
+            max-width: 1400px;
+            margin: 0 auto; /* 居中 */
+        }
+
+        /* --- 2. 导航栏 --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start; /* 对齐顶部 */
+            margin-bottom: 6rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .logo { 
+            font-weight: 700; 
+            font-size: 1.5rem; 
+            letter-spacing: 2px; 
+            text-transform: uppercase;
+        }
+        
+        .role-subtitle {
+            font-size: 0.8rem;
+            color: var(--accent-color);
+            margin-top: 5px;
+            font-weight: 400;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2.5rem;
+            padding: 0;
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        a { text-decoration: none; color: inherit; transition: opacity 0.3s; }
+        a:hover { opacity: 0.5; }
+
+        .lang-switch span { cursor: pointer; transition: color 0.3s; }
+        .lang-switch .active { font-weight: bold; color: #000; border-bottom: 1px solid #000; }
+        .lang-switch span:not(.active) { color: #ccc; }
+
+        /* --- 3. 内容区域 --- */
+        section { margin-bottom: 6rem; }
+        .section-title { font-size: 0.8rem; text-transform: uppercase; color: var(--accent-color); margin-bottom: 2rem; letter-spacing: 1px; }
+
+        /* --- 4. 作品网格 --- */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .card { cursor: pointer; }
+        .image-placeholder {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background-color: #e5e5e5;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #aaa;
+            font-size: 0.8rem;
+            transition: filter 0.3s;
+        }
+        .card:hover .image-placeholder { filter: brightness(0.95); }
+
+        /* --- 5. 关于我 (简历部分) --- */
+        .about-layout {
+            display: grid;
+            grid-template-columns: 1fr 2fr; /* 左边 1/3，右边 2/3 */
+            gap: 4rem;
+        }
+        
+        .contact-info { font-size: 0.9rem; }
+        .contact-item { margin-bottom: 0.5rem; display: block;}
+        
+        .bio-text { 
+            font-size: 1.1rem; 
+            max-width: 700px; 
+            text-align: justify; 
+        }
+
+        /* 隐藏类 (用于中英文切换) */
+        .hidden { display: none; }
+
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            body { padding: 20px; }
+            header { flex-direction: column; gap: 1.5rem; }
+            .about-layout { grid-template-columns: 1fr; gap: 2rem; }
+            nav ul { gap: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div>
+            <div class="logo">BIAO CAO</div>
+            <div class="role-subtitle">ARCHITECTURAL DESIGNER</div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#work">Work</a></li>
+                <li><a href="#about">About</a></li>
+                <li class="lang-switch">
+                    <span id="btn-cn" class="active" onclick="setLang('cn')">CN</span> / 
+                    <span id="btn-en" onclick="setLang('en')">EN</span>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="work">
+            <div class="section-title">Selected Works</div>
+            <div class="grid">
+                <div class="card">
+                    <div class="image-placeholder">Miami Westin Hotel (Image)</div>
+                    <div class="card-title">Miami Airport Westin Hotel</div>
+                    <div class="card-meta">Architecture / Miami</div>
+                </div>
+                <div class="card">
+                    <div class="image-placeholder">Sunset Blvd (Image)</div>
+                    <div class="card-title">8850 Sunset Blvd</div>
+                    <div class="card-meta">Architecture / Los Angeles</div>
+                </div>
+                <div class="card">
+                    <div class="image-placeholder">Photography (Image)</div>
+                    <div class="card-title">Urban Fragments</div>
+                    <div class="card-meta">Photography / Tokyo & LA</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="section-title">About</div>
+            <div class="about-layout">
+                <div class="contact-info">
+                    <span class="contact-item"><b>Email:</b> biaocao.arch@gmail.com</span>
+                    <span class="contact-item"><b>Tel:</b> +1 213-274-3820</span>
+                    <br>
+                    <span class="contact-item">M.Arch, SCI-Arc</span>
+                    <span class="contact-item">Base: Los Angeles / China</span>
+                </div>
+
+                <div class="bio-text">
+                    <div id="bio-cn">
+                        <p>Biao 是一位拥有多元文化背景的建筑设计师，拥有超过5年的中美两地专业实践经验。他于南加州建筑学院 (SCI-Arc) 获得建筑学硕士学位，并荣获毕业设计优秀奖。</p>
+                        <p>他的职业履历涵盖了从先锋事务所到大型商业设计公司的广泛跨度。在加入 Arquitectonica 期间，他深度参与了迈阿密威斯汀酒店、Sunset Blvd 等多个地标性项目，展现了在 BIM 技术、复杂形体建模及多专业协调方面的卓越能力。此前，他也曾在 Brooks + Scarpa 及 Fuksas Studio 等知名事务所参与国际竞赛与文化项目。</p>
+                        <p>Biao 擅长运用 Rhino, Revit 及参数化工具探索空间的可能性，致力于在理性的建造逻辑与感性的艺术表达之间寻找平衡。</p>
+                    </div>
+
+                    <div id="bio-en" class="hidden">
+                        <p>Biao Cao is an architectural designer with a global perspective and over five years of professional experience across the United States and China. He holds a Master of Architecture from the Southern California Institute of Architecture (SCI-Arc), where he graduated with a Merit Award for his thesis.</p>
+                        <p>His portfolio spans a diverse range of scales and typologies, from high-rise commercial developments to cultural competitions. Currently a Project Designer at Arquitectonica, Biao has played a key role in landmark projects such as the Miami Airport Westin Hotel and 8850 Sunset Blvd. His expertise lies in advanced digital modeling, BIM coordination, and the rigorous execution of complex design details.</p>
+                        <p>Previously, Biao contributed to design excellence at renowned firms including Brooks + Scarpa and Fuksas Studio. He is passionate about leveraging computational tools to bridge the gap between conceptual artistry and architectural realization.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer style="margin-top: 4rem; font-size: 0.7rem; color: #ccc; border-top: 1px solid #eee; padding-top: 2rem;">
+        &copy; 2026 Biao Cao. All rights reserved.
+    </footer>
+
+    <script>
+        // 简单的中英文切换逻辑
+        function setLang(lang) {
+            const bioCN = document.getElementById('bio-cn');
+            const bioEN = document.getElementById('bio-en');
+            const btnCN = document.getElementById('btn-cn');
+            const btnEN = document.getElementById('btn-en');
+
+            if (lang === 'cn') {
+                bioCN.classList.remove('hidden');
+                bioEN.classList.add('hidden');
+                btnCN.classList.add('active');
+                btnEN.classList.remove('active');
+            } else {
+                bioCN.classList.add('hidden');
+                bioEN.classList.remove('hidden');
+                btnCN.classList.remove('active');
+                btnEN.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
