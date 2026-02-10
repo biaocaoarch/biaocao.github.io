@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIAO CAO | Architecture</title>
+    <style>
+        :root {
+            --bg-color: #ffffff; 
+            --text-main: #666666;
+            --text-light: #999999;
+            --text-dark: #333333;
+            --font-family: "Helvetica", "Arial", sans-serif;
+        }
+
+        body { font-family: var(--font-family); background-color: var(--bg-color); color: var(--text-main); margin: 0; padding: 60px; -webkit-font-smoothing: antialiased; }
+
+        header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 80px; }
+        .logo { font-weight: bold; font-size: 1.2rem; letter-spacing: -0.02em; color: var(--text-dark); text-transform: uppercase; text-decoration: none;}
+
+        nav ul { list-style: none; display: flex; gap: 2.5rem; padding: 0; margin: 0; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em;}
+        nav a { text-decoration: none; color: var(--text-light); transition: color 0.3s; }
+        nav a:hover, nav a.active { color: var(--text-dark); }
+
+        .work-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(500px, 1fr)); gap: 80px; }
+        .image-placeholder { width: 100%; aspect-ratio: 16 / 9; background-color: #f0f0f0; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;}
+        
+        .work-title { font-size: 0.85rem; color: var(--text-dark); text-transform: uppercase; letter-spacing: 0.05em; }
+        .work-meta { font-size: 0.75rem; color: var(--text-light); margin-top: 5px; }
+
+        @media (max-width: 768px) { body { padding: 30px; } .work-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">Biao Cao</a>
+        <nav>
+            <ul>
+                <li><a href="architecture.html" class="active">Architecture</a></li>
+                <li><a href="photography.html">Photography</a></li>
+                <li><a href="index.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="work-grid">
+        <div class="work-item">
+            <div class="image-placeholder">Urban Textures Image</div>
+            <div class="work-title">Urban Textures</div>
+            <div class="work-meta">Urban Design / SCI-ARc</div>
+        </div>
+        <div class="work-item">
+            <div class="image-placeholder">Post War Static Image</div>
+            <div class="work-title">Post War Static</div>
+            <div class="work-meta">Urban Design / SCI-Arc</div>
+        </div>
+    </main>
+</body>
+</html>

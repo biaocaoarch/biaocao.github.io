@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIAO CAO | Photography</title>
+    <style>
+        :root {
+            --bg-color: #ffffff; 
+            --text-main: #666666; 
+            --text-light: #999999;
+            --text-dark: #333333;
+            --font-family: "Helvetica", "Arial", sans-serif;
+            --container-width: 92vw;
+        }
+
+        body { font-family: var(--font-family); background-color: var(--bg-color); color: var(--text-main); margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
+
+        .site-wrapper { max-width: var(--container-width); margin: 0 auto; padding: 4vw 2vw; box-sizing: border-box; }
+
+        header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: clamp(60px, 8vw, 120px); }
+        .logo { font-size: clamp(1.1rem, 1.4vw, 1.5rem); font-weight: bold; letter-spacing: -0.02em; color: var(--text-dark); text-transform: uppercase; text-decoration: none; }
+
+        nav ul { list-style: none; display: flex; gap: 3vw; padding: 0; margin: 0; font-size: clamp(0.75rem, 0.9vw, 0.9rem); text-transform: uppercase; letter-spacing: 0.1em; }
+        nav a { text-decoration: none; color: var(--text-light); transition: color 0.3s; }
+        nav a:hover, nav a.active { color: var(--text-dark); }
+
+        /* 摄影系列网格 */
+        .photo-series-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(30vw, 1fr));
+            gap: 4vw;
+        }
+
+        .series-item { text-decoration: none; color: inherit; display: block; }
+        
+        .series-cover {
+            width: 100%;
+            aspect-ratio: 3 / 2;
+            background-color: #f5f5f5;
+            overflow: hidden;
+            margin-bottom: 1.5vw;
+        }
+
+        .series-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .series-item:hover img { transform: scale(1.03); }
+
+        .series-title { 
+            font-size: clamp(0.85rem, 1vw, 1.1rem); 
+            color: var(--text-dark); 
+            text-transform: uppercase; 
+            letter-spacing: 0.1em;
+        }
+
+        .series-count { font-size: 0.75rem; color: var(--text-light); margin-top: 5px; }
+
+        @media (max-width: 800px) {
+            .photo-series-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="site-wrapper">
+        <header>
+            <a href="index.html" class="logo">Biao Cao</a>
+            <nav>
+                <ul>
+                    <li><a href="architecture.html">Architecture</a></li>
+                    <li><a href="photography.html" class="active">Photography</a></li>
+                    <li><a href="index.html">About</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main class="photo-series-grid">
+            <a href="chicago.html" class="series-item">
+                <div class="series-cover">
+                    <img src="images/chicago_cover.jpg" alt="Chicago Street">
+                </div>
+                <div class="series-title">Chicago</div>
+                <div class="series-count">Travel Documentation / 2025</div>
+            </a>
+
+            <main class="photo-series-grid">
+            <a href="los angeles.html" class="series-item">
+                <div class="series-cover">
+                    <img src="images/la_cover.jpg" alt="Los Angeles Street">
+                </div>
+                <div class="series-title">Los Angeles</div>
+                <div class="series-count">Street Photography / 2022-2025</div>
+            </a>
+        </main>
+    </div>
+</body>
+</html>

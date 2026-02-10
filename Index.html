@@ -1,215 +1,186 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BIAO CAO | Architecture & Photography</title>
+    <title>BIAO CAO | About</title>
     <style>
-        /* --- 1. 极简主义设计系统 --- */
         :root {
-            --bg-color: #f6f6f6; /* 类似素混凝土的灰白 */
-            --text-color: #222;
-            --accent-color: #999;
-            --spacing: 2rem;
-            --font-main: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            --bg-color: #ffffff; 
+            --text-main: #666666; /* 中度灰 */
+            --text-light: #999999;
+            --text-dark: #333333;
+            --font-family: "Helvetica", "Arial", sans-serif;
+            /* 增大页面占用比例，减少两侧留白 */
+            --container-width: 92vw; 
         }
 
         body {
-            font-family: var(--font-main);
+            font-family: var(--font-family);
             background-color: var(--bg-color);
-            color: var(--text-color);
+            color: var(--text-main);
             margin: 0;
-            padding: 40px;
-            line-height: 1.6;
-            max-width: 1400px;
-            margin: 0 auto; /* 居中 */
+            padding: 0;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* --- 2. 导航栏 --- */
+        .site-wrapper {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            /* 动态内边距：随屏幕宽度变化 */
+            padding: 4vw 2vw; 
+            box-sizing: border-box;
+        }
+
         header {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start; /* 对齐顶部 */
-            margin-bottom: 6rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid #e0e0e0;
+            align-items: baseline;
+            /* 动态间距 */
+            margin-bottom: clamp(60px, 8vw, 120px); 
         }
 
         .logo { 
-            font-weight: 700; 
-            font-size: 1.5rem; 
-            letter-spacing: 2px; 
-            text-transform: uppercase;
-        }
-        
-        .role-subtitle {
-            font-size: 0.8rem;
-            color: var(--accent-color);
-            margin-top: 5px;
-            font-weight: 400;
+            /* 动态字体：在 1.1rem 到 1.5rem 之间平滑变动 */
+            font-size: clamp(1.1rem, 1.4vw, 1.5rem); 
+            font-weight: bold; 
+            letter-spacing: -0.02em; 
+            color: var(--text-dark); 
+            text-transform: uppercase; 
+            text-decoration: none;
         }
 
-        nav ul {
-            list-style: none;
+        nav ul { 
+            list-style: none; 
+            display: flex; 
+            gap: 3vw; 
+            padding: 0; 
+            margin: 0; 
+            font-size: clamp(0.75rem, 0.9vw, 0.9rem); 
+            text-transform: uppercase; 
+            letter-spacing: 0.1em;
+        }
+        
+        nav a { text-decoration: none; color: var(--text-light); transition: color 0.3s; }
+        nav a:hover, nav a.active { color: var(--text-dark); }
+
+        .content-container {
             display: flex;
-            gap: 2.5rem;
-            padding: 0;
-            margin: 0;
-            font-size: 0.9rem;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 5vw;
         }
 
-        a { text-decoration: none; color: inherit; transition: opacity 0.3s; }
-        a:hover { opacity: 0.5; }
-
-        .lang-switch span { cursor: pointer; transition: color 0.3s; }
-        .lang-switch .active { font-weight: bold; color: #000; border-bottom: 1px solid #000; }
-        .lang-switch span:not(.active) { color: #ccc; }
-
-        /* --- 3. 内容区域 --- */
-        section { margin-bottom: 6rem; }
-        .section-title { font-size: 0.8rem; text-transform: uppercase; color: var(--accent-color); margin-bottom: 2rem; letter-spacing: 1px; }
-
-        /* --- 4. 作品网格 --- */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 3rem;
+        .text-block {
+            flex: 1;
+            /* 限制文本行宽以保证易读性 */
+            max-width: 45vw; 
         }
 
-        .card { cursor: pointer; }
-        .image-placeholder {
-            width: 100%;
-            aspect-ratio: 16/9;
-            background-color: #e5e5e5;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #aaa;
-            font-size: 0.8rem;
-            transition: filter 0.3s;
-        }
-        .card:hover .image-placeholder { filter: brightness(0.95); }
-
-        /* --- 5. 关于我 (简历部分) --- */
-        .about-layout {
-            display: grid;
-            grid-template-columns: 1fr 2fr; /* 左边 1/3，右边 2/3 */
-            gap: 4rem;
-        }
-        
-        .contact-info { font-size: 0.9rem; }
-        .contact-item { margin-bottom: 0.5rem; display: block;}
-        
         .bio-text { 
-            font-size: 1.1rem; 
-            max-width: 700px; 
-            text-align: justify; 
+            /* 动态正文字体 */
+            font-size: clamp(0.95rem, 1.1vw, 1.15rem); 
+            margin-bottom: 2.5vw; 
+            text-align: justify;
+        }
+        
+        .bio-text p { margin-bottom: 1.5vw; }
+
+        .contact-info { 
+            font-size: clamp(0.8rem, 0.9vw, 0.95rem); 
+            color: var(--text-main); 
+            line-height: 1.8; 
+            margin-top: 4vw;
         }
 
-        /* 隐藏类 (用于中英文切换) */
+        .lang-switch { 
+            color: var(--text-light); 
+            font-size: clamp(0.75rem, 0.8vw, 0.85rem); 
+            margin-top: 5vw;
+        }
+        
+        .lang-switch span { cursor: pointer; transition: color 0.3s; }
+        .lang-switch .active { color: var(--text-dark); font-weight: bold; }
+
+        .image-block {
+            /* 图片宽度随屏幕宽度等比缩放 */
+            flex: 0 0 32vw; 
+        }
+        
+        .image-block img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
         .hidden { display: none; }
 
         /* 移动端适配 */
-        @media (max-width: 768px) {
-            body { padding: 20px; }
-            header { flex-direction: column; gap: 1.5rem; }
-            .about-layout { grid-template-columns: 1fr; gap: 2rem; }
-            nav ul { gap: 1.5rem; }
+        @media (max-width: 800px) {
+            .site-wrapper { padding: 40px 20px; }
+            .content-container { flex-direction: column-reverse; gap: 40px; }
+            .text-block, .image-block { flex: 0 0 100%; max-width: 100%; }
+            header { margin-bottom: 40px; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div>
-            <div class="logo">BIAO CAO</div>
-            <div class="role-subtitle">ARCHITECTURAL DESIGNER</div>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#work">Work</a></li>
-                <li><a href="#about">About</a></li>
-                <li class="lang-switch">
-                    <span id="btn-cn" class="active" onclick="setLang('cn')">CN</span> / 
-                    <span id="btn-en" onclick="setLang('en')">EN</span>
-                </li>
-            </ul>
-        </nav>
-    </header>
+    <div class="site-wrapper">
+        <header>
+            <a href="index.html" class="logo">Biao Cao</a>
+            <nav>
+                <ul>
+                    <li><a href="architecture.html">Architecture</a></li>
+                    <li><a href="photography.html">Photography</a></li>
+                    <li><a href="index.html" class="active">About</a></li>
+                </ul>
+            </nav>
+        </header>
 
-    <main>
-        <section id="work">
-            <div class="section-title">Selected Works</div>
-            <div class="grid">
-                <div class="card">
-                    <div class="image-placeholder">Urban Textures (Image)</div>
-                    <div class="card-title">Urban Textures</div>
-                    <div class="card-meta">Urban Design / Shenzhen</div>
+        <main class="content-container">
+            <div class="text-block">
+                <div id="bio-en" class="bio-text">
+                    <p>Biao Cao  is an architectural designer with over 5 years of professional experience across China and the US. He holds a Master of Architecture from the Southern California Institute of Architecture (SCI-Arc), where he received a Graduate Thesis Merit Award.</p>
+                    <p>During his tenure at firms like Arquitectonica, he has contributed to landmark projects including the 1420 South Miami Ave、Miami Airport Wetin Hotel and Starfield Jinju Shopping Mall. He focuses on leveraging computational tools to bridge the gap between architectural logic and artistic expression.</p>
                 </div>
-                <div class="card">
-                    <div class="image-placeholder">Static Post War (Image)</div>
-                    <div class="card-title">Static Post War</div>
-                    <div class="card-meta">Architecture / Los Angeles</div>
-                </div>
-                <div class="card">
-                    <div class="image-placeholder">Photography (Image)</div>
-                    <div class="card-title">Urban Fragments</div>
-                    <div class="card-meta">Photography / USA</div>
-                </div>
-            </div>
-        </section>
 
-        <section id="about">
-            <div class="section-title">About</div>
-            <div class="about-layout">
+                <div id="bio-cn" class="bio-text hidden">
+                    <p>曹彪 (Biao Cao)  是一位拥有超过 5 年中美两地实践经验的建筑设计师。他获得南加州建筑学院 (SCI-Arc) 建筑学硕士学位以及毕业设计优等奖 (Merit Award)。</p>
+                    <p>在 Arquitectonica 等知名事务所任职期间，他深度参与了1420 South Miami Ave、Miami Airport Wetin Hotel和Starfield Jinju Shopping Mall等地标性项目。他致力于通过参数化工具探索建造逻辑与艺术表达的平衡。</p>
+                </div>
+
                 <div class="contact-info">
-                    <span class="contact-item"><b>Email:</b> biaocao.arch@gmail.com</span>
-                    <span class="contact-item"><b>Tel:</b> +1 213-274-3820</span>
-                    <br>
-                    <span class="contact-item">M.Arch, SCI-Arc</span>
-                    <span class="contact-item">Base: Los Angeles / China</span>
+                    Email: biaocao.arch@gmail.com<br>
+                    Tel: +1 213-274-3820
                 </div>
 
-                <div class="bio-text">
-                    <div id="bio-cn">
-                        <p>Biao 是一位拥有多元文化背景的建筑设计师，拥有超过5年的中美两地专业实践经验。他于南加州建筑学院 (SCI-Arc) 获得建筑学硕士学位，并荣获毕业设计优秀奖。</p>
-                        <p>他的职业履历涵盖了从先锋事务所到大型商业设计公司的广泛跨度。在加入 Arquitectonica 期间，他深度参与了迈阿密威斯汀酒店、Sunset Blvd 等多个地标性项目，展现了在 BIM 技术、复杂形体建模及多专业协调方面的卓越能力。此前，他也曾在 Brooks + Scarpa 及 Fuksas Studio 等知名事务所参与国际竞赛与文化项目。</p>
-                        <p>Biao 擅长运用 Rhino, Revit 及参数化工具探索空间的可能性，致力于在理性的建造逻辑与感性的艺术表达之间寻找平衡。</p>
-                    </div>
-
-                    <div id="bio-en" class="hidden">
-                        <p>Biao Cao is an architectural designer with a global perspective and over five years of professional experience across the United States and China. He holds a Master of Architecture from the Southern California Institute of Architecture (SCI-Arc), where he graduated with a Merit Award for his thesis.</p>
-                        <p>His portfolio spans a diverse range of scales and typologies, from high-rise commercial developments to cultural competitions. Currently a Project Designer at Arquitectonica, Biao has played a key role in landmark projects such as the Miami Airport Westin Hotel and 8850 Sunset Blvd. His expertise lies in advanced digital modeling, BIM coordination, and the rigorous execution of complex design details.</p>
-                        <p>Previously, Biao contributed to design excellence at renowned firms including Brooks + Scarpa and Fuksas Studio. He is passionate about leveraging computational tools to bridge the gap between conceptual artistry and architectural realization.</p>
-                    </div>
+                <div class="lang-switch">
+                    <span id="btn-en" class="active" onclick="setLang('en')">EN</span> / 
+                    <span id="btn-cn" onclick="setLang('cn')">中文</span>
                 </div>
             </div>
-        </section>
-    </main>
-
-    <footer style="margin-top: 4rem; font-size: 0.7rem; color: #ccc; border-top: 1px solid #eee; padding-top: 2rem;">
-        &copy; 2026 Biao Cao. All rights reserved.
-    </footer>
+            
+            <div class="image-block">
+                <img src="images/portrait.jpg" alt="Biao Cao Portrait">
+            </div>
+        </main>
+    </div>
 
     <script>
-        // 简单的中英文切换逻辑
         function setLang(lang) {
             const bioCN = document.getElementById('bio-cn');
             const bioEN = document.getElementById('bio-en');
             const btnCN = document.getElementById('btn-cn');
             const btnEN = document.getElementById('btn-en');
-
+            
             if (lang === 'cn') {
-                bioCN.classList.remove('hidden');
-                bioEN.classList.add('hidden');
-                btnCN.classList.add('active');
-                btnEN.classList.remove('active');
+                bioCN.classList.remove('hidden'); bioEN.classList.add('hidden');
+                btnCN.classList.add('active'); btnEN.classList.remove('active');
             } else {
-                bioCN.classList.add('hidden');
-                bioEN.classList.remove('hidden');
-                btnCN.classList.remove('active');
-                btnEN.classList.add('active');
+                bioEN.classList.remove('hidden'); bioCN.classList.add('hidden');
+                btnEN.classList.add('active'); btnCN.classList.remove('active');
             }
         }
     </script>
