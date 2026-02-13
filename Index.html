@@ -7,11 +7,10 @@
     <style>
         :root {
             --bg-color: #ffffff; 
-            --text-main: #666666; /* 中度灰 */
+            --text-main: #666666; 
             --text-light: #999999;
             --text-dark: #333333;
             --font-family: "Helvetica", "Arial", sans-serif;
-            /* 增大页面占用比例，减少两侧留白 */
             --container-width: 92vw; 
         }
 
@@ -25,10 +24,20 @@
             -webkit-font-smoothing: antialiased;
         }
 
+        /* --- 图片防盗锁定 --- */
+        img {
+            -webkit-user-drag: none;
+            user-drag: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+        }
+
         .site-wrapper {
             max-width: var(--container-width);
             margin: 0 auto;
-            /* 动态内边距：随屏幕宽度变化 */
             padding: 4vw 2vw; 
             box-sizing: border-box;
         }
@@ -37,33 +46,38 @@
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            /* 动态间距 */
             margin-bottom: clamp(60px, 8vw, 120px); 
         }
 
         .logo { 
-            /* 动态字体：在 1.1rem 到 1.5rem 之间平滑变动 */
-            font-size: clamp(1.1rem, 1.4vw, 1.5rem); 
-            font-weight: bold; 
-            letter-spacing: -0.02em; 
-            color: var(--text-dark); 
-            text-transform: uppercase; 
+            font-size: clamp(1.1rem, 1.4vw, 1.5rem);
+            font-weight: bold;
+            letter-spacing: -0.02em;
+            color: var(--text-dark);
+            text-transform: uppercase;
             text-decoration: none;
         }
 
         nav ul { 
-            list-style: none; 
-            display: flex; 
-            gap: 3vw; 
-            padding: 0; 
-            margin: 0; 
-            font-size: clamp(0.75rem, 0.9vw, 0.9rem); 
-            text-transform: uppercase; 
+            list-style: none;
+            display: flex;
+            gap: 3vw;
+            padding: 0;
+            margin: 0;
+            font-size: clamp(0.75rem, 0.9vw, 0.9rem);
+            text-transform: uppercase;
             letter-spacing: 0.1em;
         }
-        
-        nav a { text-decoration: none; color: var(--text-light); transition: color 0.3s; }
-        nav a:hover, nav a.active { color: var(--text-dark); }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-light);
+            transition: color 0.3s;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--text-dark);
+        }
 
         .content-container {
             display: flex;
@@ -74,66 +88,81 @@
 
         .text-block {
             flex: 1;
-            /* 限制文本行宽以保证易读性 */
-            max-width: 45vw; 
+            max-width: 45vw;
         }
 
-        .bio-text { 
-            /* 动态正文字体 */
-            font-size: clamp(0.95rem, 1.1vw, 1.15rem); 
-            margin-bottom: 2.5vw; 
+        .bio-text {
+            font-size: clamp(0.95rem, 1.1vw, 1.15rem);
+            margin-bottom: 2.5vw;
             text-align: justify;
         }
-        
-        .bio-text p { margin-bottom: 1.5vw; }
+
+        .bio-text p {
+            margin-bottom: 1.5vw;
+        }
 
         .contact-info { 
-            font-size: clamp(0.8rem, 0.9vw, 0.95rem); 
-            color: var(--text-main); 
-            line-height: 1.8; 
+            font-size: clamp(0.8rem, 0.9vw, 0.95rem);
+            color: var(--text-main);
+            line-height: 1.8;
             margin-top: 4vw;
         }
 
         .lang-switch { 
-            color: var(--text-light); 
-            font-size: clamp(0.75rem, 0.8vw, 0.85rem); 
+            color: var(--text-light);
+            font-size: clamp(0.75rem, 0.8vw, 0.85rem);
             margin-top: 5vw;
         }
-        
-        .lang-switch span { cursor: pointer; transition: color 0.3s; }
-        .lang-switch .active { color: var(--text-dark); font-weight: bold; }
+
+        .lang-switch span {
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .lang-switch .active {
+            color: var(--text-dark);
+            font-weight: bold;
+        }
 
         .image-block {
-            /* 图片宽度随屏幕宽度等比缩放 */
-            flex: 0 0 32vw; 
+            flex: 0 0 32vw;
         }
-        
+
         .image-block img {
             width: 100%;
             height: auto;
             display: block;
         }
 
-        .hidden { display: none; }
+        .hidden {
+            display: none;
+        }
 
-        /* 移动端适配 */
         @media (max-width: 800px) {
             .site-wrapper { padding: 40px 20px; }
-            .content-container { flex-direction: column-reverse; gap: 40px; }
-            .text-block, .image-block { flex: 0 0 100%; max-width: 100%; }
-            header { margin-bottom: 40px; }
+            .content-container {
+                flex-direction: column-reverse;
+                gap: 40px;
+            }
+            .text-block, .image-block {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+            header {
+                margin-bottom: 40px;
+            }
         }
     </style>
 </head>
 <body>
-
     <div class="site-wrapper">
         <header>
             <a href="index.html" class="logo">Biao Cao</a>
             <nav>
                 <ul>
-                    <li><a href="architecture.html">Architecture</a></li>
-                    <li><a href="photography.html">Photography</a></li>
+                    <li><a href="Architecture.html">Architecture</a></li>
+                    <li><a href="Photography.html">Photography</a></li>
+                    <li><a href="Resume.html">Resume</a></li>
                     <li><a href="index.html" class="active">About</a></li>
                 </ul>
             </nav>
@@ -142,13 +171,13 @@
         <main class="content-container">
             <div class="text-block">
                 <div id="bio-en" class="bio-text">
-                    <p>Biao Cao  is an architectural designer with over 5 years of professional experience across China and the US. He holds a Master of Architecture from the Southern California Institute of Architecture (SCI-Arc), where he received a Graduate Thesis Merit Award.</p>
-                    <p>During his tenure at firms like Arquitectonica, he has contributed to landmark projects including the 1420 South Miami Ave、Miami Airport Wetin Hotel and Starfield Jinju Shopping Mall. He focuses on leveraging computational tools to bridge the gap between architectural logic and artistic expression.</p>
+                    <p>Biao Cao is an architectural designer with over 5 years of professional experience across China and the US. He holds a Master of Architecture from the Southern California Institute of Architecture (SCI-Arc), where he received a Graduate Thesis Merit Award.</p>
+                    <p>During his tenure at firms like Arquitectonica, he has contributed to landmark projects including the 1420 South Miami Ave, Miami Airport Westin Hotel, and Starfield Jinju Shopping Mall. He focuses on leveraging computational tools to bridge the gap between architectural logic and artistic expression.</p>
                 </div>
 
                 <div id="bio-cn" class="bio-text hidden">
-                    <p>曹彪 (Biao Cao)  是一位拥有超过 5 年中美两地实践经验的建筑设计师。他获得南加州建筑学院 (SCI-Arc) 建筑学硕士学位以及毕业设计优等奖 (Merit Award)。</p>
-                    <p>在 Arquitectonica 等知名事务所任职期间，他深度参与了1420 South Miami Ave、Miami Airport Wetin Hotel和Starfield Jinju Shopping Mall等地标性项目。他致力于通过参数化工具探索建造逻辑与艺术表达的平衡。</p>
+                    <p>曹彪 (Biao Cao) 是一位拥有超过 5 年中美两地实践经验的建筑设计师。他获得南加州建筑学院 (SCI-Arc) 建筑学硕士学位及毕业设计优等奖 (Merit Award)。</p>
+                    <p>在 Arquitectonica 等知名事务所任职期间，他深度参与了1420 South Miami Ave、Miami Airport Westin Hotel和Starfield Jinju Shopping Mall等地标性项目。他致力于通过参数化工具探索建造逻辑与艺术表达的平衡。</p>
                 </div>
 
                 <div class="contact-info">
@@ -183,6 +212,14 @@
                 btnEN.classList.add('active'); btnCN.classList.remove('active');
             }
         }
+
+        // --- 禁止图片右键和保存 ---
+        document.addEventListener('contextmenu', function(e) {
+            if (e.target.tagName === 'IMG') e.preventDefault();
+        });
+        document.addEventListener('dragstart', function(e) {
+            if (e.target.tagName === 'IMG') e.preventDefault();
+        });
     </script>
 </body>
 </html>

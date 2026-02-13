@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIAO CAO | Post War Static</title>
+    <style>
+        :root {
+            --bg-color: #ffffff; 
+            --text-main: #000000;
+            --text-light: #888888;
+            --font-family: "Helvetica", "Arial", sans-serif;
+            --margin-base: 40px;
+        }
+
+        body { 
+            font-family: var(--font-family); 
+            background-color: var(--bg-color); 
+            color: var(--text-main); 
+            margin: 0; 
+            padding: 0; 
+            overflow: hidden; 
+            -webkit-font-smoothing: antialiased; 
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+            padding: var(--margin-base);
+            box-sizing: border-box;
+            gap: 40px;
+        }
+
+        /* --- 左侧：文字信息区 --- */
+        .project-sidebar {
+            width: 28%;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+            justify-content: flex-start;
+            overflow-y: auto;
+            padding-right: 20px;
+        }
+        .project-sidebar::-webkit-scrollbar { display: none; }
+
+        .nav-header { margin-bottom: 80px; }
+        .nav-header a { 
+            text-decoration: none; 
+            color: var(--text-main); 
+            font-weight: bold; 
+            text-transform: uppercase; 
+            font-size: 0.85rem; 
+            letter-spacing: 0.1em; 
+            transition: opacity 0.3s;
+        }
+        .nav-header a:hover { opacity: 0.6; }
+
+        .project-title { 
+            font-size: 1.2rem; 
+            text-transform: uppercase; 
+            letter-spacing: 0.05em; 
+            margin-bottom: 30px; 
+            font-weight: 600; 
+            line-height: 1.2;
+        }
+
+        .project-description { 
+            font-size: 0.85rem; 
+            line-height: 1.8; 
+            margin-bottom: 40px; 
+            text-align: justify; 
+            color: #333;
+        }
+
+        .project-meta { 
+            font-size: 0.75rem; 
+            color: var(--text-light); 
+            text-transform: uppercase; 
+            line-height: 2; 
+            margin-top: auto; 
+        }
+
+        /* --- 右侧：图片展示区 --- */
+        .project-gallery-wrapper {
+            flex-grow: 1;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 60px; /* 留出箭头空间 */
+        }
+
+        .slider-container {
+            display: flex;
+            width: 100%;
+            height: 85vh;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            align-items: center;
+        }
+        .slider-container::-webkit-scrollbar { display: none; }
+
+        .photo-slide {
+            flex: 0 0 100%;
+            width: 100%;
+            height: 100%;
+            scroll-snap-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .photo-slide img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            -webkit-user-drag: none;
+        }
+
+        /* --- 导航箭头 --- */
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 20px;
+            z-index: 10;
+            color: var(--text-main);
+            transition: opacity 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .nav-btn:hover { opacity: 0.5; }
+        
+        .nav-btn svg { 
+            width: 40px; 
+            height: 40px; 
+            stroke: currentColor; 
+            fill: none; 
+            stroke-width: 1px; 
+        }
+        
+        .btn-prev { left: 0; }
+        .btn-next { right: 0; }
+
+        /* 计数器 */
+        .counter {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            color: var(--text-light);
+        }
+
+        /* --- 响应式 --- */
+        @media (max-width: 900px) {
+            body { overflow: auto; }
+            .container { flex-direction: column; height: auto; padding: 20px; gap: 30px;}
+            .project-sidebar { width: 100%; height: auto; padding-right: 0; margin-bottom: 20px;}
+            .project-gallery-wrapper { width: 100%; height: 60vh; padding: 0 40px; }
+            .nav-btn { padding: 5px; }
+            .nav-btn svg { width: 25px; height: 25px; }
+            .project-meta { margin-top: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <aside class="project-sidebar">
+            <div class="nav-header">
+                <a href="Architecture.html">← Architecture</a>
+            </div>
+            
+            <h1 class="project-title">Earth Protector</h1>
+            
+            <div class="project-description">
+                <p>SCI-Arc is an independent school of architecture, its building is very special, a very long building. This makes SCI-Arc compared to other schools, it does not have many elements of a real campus, such as landscape, plaza, grass, and so on.</p>
+                <p>The most critical problem is that there are no apartments, and students have to live in apartments or other places near the school. All activities of the school’s faculty, staff, and students are almost in the same building, with little outdoor activity. Most of the SCI-Arc’s outdoor spaces are used for parking, and cars become the occupants of those spaces. This means that SCI-Arc lacks many spaces where people can enjoy life and communicate, which is very unfavorable for students. The busy curriculum of the School of Architecture means that students rarely have access to many recreational activities, and the campus is a place where students can relax. So a good campus must have many public spaces where students can relax.</p>
+                <p>So this project is designed to protect SCI-Arc and the place where it is located. I think the best way to protect it is to use these spaces and keep them active, to allow these places to have more activities. The new scheme is designed on the roof and parking lot of the existing SCI-Arc building.</p>
+                <p>The new scheme design consists of two cubes of different scales and five slabs of different scales. Four of the slabs are folded to form a mass with large flats and vertical spaces. The two cubes not only have many public space programs but also have structural functions that support the new design of the entire project. Each building is connected through circulation, and programs such as the library and cafe are designed in some large outdoor circulations so that everyone can communicate with others here.</p>
+                <p>Circulation is a very important part of this project. It is divided into two parts: the indoor is a systematic circulation composed of many small-scaled stairs, elevators, and escalators, connecting different programs in the indoor; the outdoor is composed of large-scaled bridges and ramps, connecting different buildings, and putting public spaces such as libraries and cafes here to provide people with convenient space for chatting. Since many SCI-Arc students live in the OSF apartments, the new scheme design also designs a circulation connecting the SCI-Arc and OSF apartments, entering the school directly from the apartments.</p>
+                <p>All of SCI-Arc’s teaching, administrative and other recreational activities were then designed in the new building. The shape of the new building is folded like a book. Through the combination of these different scales of folding slabs, many negative spaces are formed between the buildings. These spaces provide the faculty and students with a lot of outdoor activities.</p>
+            </div>
+
+            <div class="project-meta">
+                Program: 3GB Design Studio<br>
+                Instructor: Tom Wiscombe<br>
+                Year: 2022<br>
+                SCI-Arc
+            </div>
+        </aside>
+
+        <main class="project-gallery-wrapper">
+            <button class="nav-btn btn-prev" onclick="scrollSlider(-1)">
+                <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+
+            <div class="slider-container" id="slider">
+                <div class="photo-slide"><img src="images/earthprotector_01.jpg" alt="01"></div>
+                <div class="photo-slide"><img src="images/earthprotector_02.jpg" alt="02"></div>
+                <div class="photo-slide"><img src="images/earthprotector_03.jpg" alt="03"></div>
+                <div class="photo-slide"><img src="images/earthprotector_04.jpg" alt="04"></div>
+                <div class="photo-slide"><img src="images/earthprotector_05.jpg" alt="05"></div>
+                <div class="photo-slide"><img src="images/earthprotector_06.jpg" alt="06"></div>
+                <div class="photo-slide"><img src="images/earthprotector_07.jpg" alt="07"></div>
+                </div>
+
+            <button class="nav-btn btn-next" onclick="scrollSlider(1)">
+                <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+
+            <div class="counter"><span id="current">1</span> / <span id="total">3</span></div>
+        </main>
+    </div>
+
+    <script>
+        const slider = document.getElementById('slider');
+        const currentTag = document.getElementById('current');
+        const totalTag = document.getElementById('total');
+        const slides = document.querySelectorAll('.photo-slide');
+        
+        totalTag.innerText = slides.length;
+
+        function scrollSlider(direction) {
+            const width = slider.clientWidth;
+            const maxScroll = slider.scrollWidth - width;
+            
+            if (direction === 1 && slider.scrollLeft >= maxScroll - 10) {
+                slider.scrollTo({ left: 0, behavior: 'smooth' });
+            } else if (direction === -1 && slider.scrollLeft <= 10) {
+                slider.scrollTo({ left: maxScroll, behavior: 'smooth' });
+            } else {
+                slider.scrollBy({ left: direction * width, behavior: 'smooth' });
+            }
+        }
+
+        slider.addEventListener('scroll', () => {
+            const index = Math.round(slider.scrollLeft / slider.clientWidth);
+            currentTag.innerText = index + 1;
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "ArrowRight") scrollSlider(1);
+            if (e.key === "ArrowLeft") scrollSlider(-1);
+        });
+
+        document.addEventListener('contextmenu', e => {
+            if (e.target.tagName === 'IMG') e.preventDefault();
+        });
+    </script>
+</body>
+</html>
